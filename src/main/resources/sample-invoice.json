@@ -1,0 +1,47 @@
+{
+  "number": "2025-0001",
+  "issueDate": "2025-08-12",
+  "currency": "EUR",
+  "seller": {
+    "name": "Mein Unternehmen GmbH",
+    "street": "Musterstraße 1",
+    "zip": "10115",
+    "city": "Berlin",
+    "countryCode": "DE",
+    "vatId": "DE123456789"
+  },
+  "buyer": {
+    "name": "Kunde AG",
+    "street": "Kundenweg 5",
+    "zip": "20457",
+    "city": "Hamburg",
+    "countryCode": "DE",
+    "vatId": "DE987654321"
+  },
+  "taxRate": 0.19,
+  "lines": [
+    {
+      "name": "VW Golf Inspektion",
+      "qty": 1,
+      "unit": "C62",
+      "netUnitPrice": 486.13
+    },
+    {
+      "name": "Material/Teile",
+      "qty": 1,
+      "unit": "C62",
+      "netUnitPrice": 0.0
+    },
+    {
+      "name": "Werkstattverbrauch",
+      "qty": 1,
+      "unit": "C62",
+      "netUnitPrice": 0.0
+    }
+  ],
+  "notes": "VW Golf, Fg-Nr. YV1XYZ, km-Stand: 124567, Service-Nr.: 123, SB:123",
+  "paymentTerms": "Der Rechnungsbetrag ist sofort zur Zahlung fällig. Bitte überweisen Sie auf unser Konto.",
+  "bankName": "Sparkasse",
+  "iban": "DE12 3456 7890 1234 5678 90",
+  "bic": "SKGIDEXX"
+}
