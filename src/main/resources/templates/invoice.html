@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Rechnung</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/invoice.css"/>
+</head>
+<body>
+<div class="invoice">
+    <header>
+        <h1>Rechnung</h1>
+        <p><strong>Rechnungs-Nr.:</strong> <span th:text="${inv.number}">12345</span></p>
+        <p><strong>Datum:</strong> <span th:text="${issueDateFmt}">01.01.2025</span></p>
+    </header>
+
+    <section class="addresses">
+        <div>
+            <h2>Verkäufer</h2>
+            <p th:text="${inv.seller.name}">Firma Mustermann</p>
+            <p th:text="${inv.seller.street}">Musterstraße 1</p>
+            <p><span th:text="${inv.seller.zip}">12345</span> <span th:text="${inv.seller.city}">Musterstadt</span></p>
+        </div>
+        <div>
+            <h2>Käufer</h2>
+            <p th:text="${inv.buyer.name}">Kunde Beispiel</p>
+            <p th:text="${inv.buyer.street}">Beispielweg 2</p>
+            <p><span th:text="${inv.buyer.zip}">54321</span> <span th:text="${inv.buyer.city}">Beispielstadt</span></p>
+        </div>
+    </section>
+
+    <section class="items">
+        <table>
+            <thead>
+            <tr>
+                <th>Bezeichnung</th>
+                <th>Menge</th>
+                <th>Einheit</th>
+                <th>Einzelpreis</th>
+                <th>Betrag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="line : ${inv.lines}">
+                <td th:text="${line.name}">Produkt</td>
+                <td th:text="${line.qty}">1</td>
+                <td th:text="${line.unit}">Stk</td>
+                <td th:text="${#numbers.formatDecimal(line.netUnitPrice, 1, 'COMMA', 2, 'POINT')} + ' €'">10,00 €</td>
+                <td th:text="${#numbers.formatDecimal(line.netUnitPrice * line.qty, 1, 'COMMA', 2, 'POINT')} + ' €'">10,00 €</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="totals">
+        <p><strong>Netto:</strong> <span th:text="${#numbers.formatDecimal(netTotal, 1, 'COMMA', 2, 'POINT')} + ' €'">100,00 €</span></p>
+        <p><strong>USt:</strong> <span th:text="${#numbers.formatDecimal(tax, 1, 'COMMA', 2, 'POINT')} + ' €'">19,00 €</span></p>
+        <p class="grand-total"><strong>Gesamt:</strong> <span th:text="${#numbers.formatDecimal(gross, 1, 'COMMA', 2, 'POINT')} + ' €'">119,00 €</span></p>
+    </section>
+
+    <footer>
+        <p th:text="${inv.paymentTerms}">Der Rechnungsbetrag ist sofort fällig.</p>
+        <p th:text="'IBAN: ' + ${inv.iban} + '  BIC: ' + ${inv.bic}">IBAN: DE00..., BIC: DEUTDEFFXXX</p>
+    </footer>
+</div>
+</body>
+</html>
